@@ -1,0 +1,1 @@
+Just run `demo.statemachine.OrderApplication` and check logs 
