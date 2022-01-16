@@ -8,5 +8,5 @@ public interface OrderService {
 
   void pay(Long orderId);
 
-  void fulfill(Long orderId);
+  void ship(Long orderId);
 }

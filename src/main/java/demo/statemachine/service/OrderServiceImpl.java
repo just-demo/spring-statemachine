@@ -1,7 +1,7 @@
 package demo.statemachine.service;
 
-import static demo.statemachine.entity.OrderEvent.FULFILL;
 import static demo.statemachine.entity.OrderEvent.PAY;
+import static demo.statemachine.entity.OrderEvent.SHIP;
 import static demo.statemachine.entity.OrderState.SUBMITTED;
 import static java.util.Optional.ofNullable;
 import static org.springframework.messaging.support.MessageBuilder.withPayload;
@@ -41,8 +41,8 @@ public class OrderServiceImpl implements OrderService {
   }
 
   @Override
-  public void fulfill(Long orderId) {
-    sendEvent(orderId, FULFILL);
+  public void ship(Long orderId) {
+    sendEvent(orderId, SHIP);
   }
 
   private void sendEvent(Long orderId, OrderEvent orderEvent) {

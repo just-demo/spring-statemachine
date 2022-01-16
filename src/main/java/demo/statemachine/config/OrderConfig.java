@@ -1,11 +1,11 @@
 package demo.statemachine.config;
 
 import static demo.statemachine.entity.OrderEvent.CANCEL;
-import static demo.statemachine.entity.OrderEvent.FULFILL;
 import static demo.statemachine.entity.OrderEvent.PAY;
+import static demo.statemachine.entity.OrderEvent.SHIP;
 import static demo.statemachine.entity.OrderState.CANCELLED;
-import static demo.statemachine.entity.OrderState.FULFILLED;
 import static demo.statemachine.entity.OrderState.PAID;
+import static demo.statemachine.entity.OrderState.SHIPPED;
 import static demo.statemachine.entity.OrderState.SUBMITTED;
 
 import org.springframework.context.annotation.Configuration;
@@ -28,7 +28,7 @@ public class OrderConfig extends StateMachineConfigurerAdapter<OrderState, Order
     transitions
         .withExternal().source(SUBMITTED).target(PAID).event(PAY)
         .and()
-        .withExternal().source(PAID).target(FULFILLED).event(FULFILL)
+        .withExternal().source(PAID).target(SHIPPED).event(SHIP)
         .and()
         .withExternal().source(SUBMITTED).target(CANCELLED).event(CANCEL)
         .and()
@@ -41,7 +41,7 @@ public class OrderConfig extends StateMachineConfigurerAdapter<OrderState, Order
         .withStates()
         .initial(SUBMITTED)
         .state(PAID)
-        .end(FULFILLED)
+        .end(SHIPPED)
         .end(CANCELLED);
   }
 

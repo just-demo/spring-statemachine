@@ -18,6 +18,6 @@ public class OrderRunner implements ApplicationRunner {
   public void run(ApplicationArguments args) {
     Order order = orderService.create();
     orderService.pay(order.getId());
-    orderService.fulfill(order.getId());
+    orderService.ship(order.getId());
   }
 }
