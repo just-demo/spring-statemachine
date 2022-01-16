@@ -17,8 +17,8 @@ import org.springframework.stereotype.Service;
 
 import demo.statemachine.entity.Order;
 import demo.statemachine.entity.OrderEvent;
-import demo.statemachine.repository.OrderRepository;
 import demo.statemachine.entity.OrderState;
+import demo.statemachine.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 
 @Service

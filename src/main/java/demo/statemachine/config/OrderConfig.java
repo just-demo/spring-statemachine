@@ -14,14 +14,11 @@ import org.springframework.statemachine.config.StateMachineConfigurerAdapter;
 import org.springframework.statemachine.config.builders.StateMachineConfigurationConfigurer;
 import org.springframework.statemachine.config.builders.StateMachineStateConfigurer;
 import org.springframework.statemachine.config.builders.StateMachineTransitionConfigurer;
-import org.springframework.statemachine.listener.StateMachineListenerAdapter;
-import org.springframework.statemachine.state.State;
 
 import demo.statemachine.entity.OrderEvent;
 import demo.statemachine.entity.OrderState;
-import lombok.extern.log4j.Log4j2;
+import demo.statemachine.listener.OrderListener;
 
-@Log4j2
 @Configuration
 @EnableStateMachineFactory
 public class OrderConfig extends StateMachineConfigurerAdapter<OrderState, OrderEvent> {
@@ -52,11 +49,6 @@ public class OrderConfig extends StateMachineConfigurerAdapter<OrderState, Order
   public void configure(StateMachineConfigurationConfigurer<OrderState, OrderEvent> config) throws Exception {
     config.withConfiguration()
         .autoStartup(false)
-        .listener(new StateMachineListenerAdapter<>() {
-          @Override
-          public void stateChanged(State<OrderState, OrderEvent> from, State<OrderState, OrderEvent> to) {
-            log.info("State changed: {} -> {}", from.getId(), to.getId());
-          }
-        });
+        .listener(new OrderListener());
   }
 }
